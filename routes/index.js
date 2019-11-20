@@ -284,16 +284,9 @@ router.get('/qr/:string', function(req, res) {
 router.get('/ext/summary', function(req, res) {
   lib.get_difficulty(function(difficulty) {
     difficultyHybrid = ''
-    if (difficulty['proof-of-work']) {
-            if (settings.index.difficulty == 'Hybrid') {
-              difficultyHybrid = 'POS: ' + difficulty['proof-of-stake'];
-              difficulty = 'POW: ' + difficulty['proof-of-work'];
-            } else if (settings.index.difficulty == 'POW') {
-              difficulty = difficulty['proof-of-work'];
-            } else {
-        difficulty = difficulty['proof-of-stake'];
-      }
-    }
+    difficultyHybrid = 'PoS: ' + difficulty['proof-of-stake'];
+    difficulty = 'PoW: ' + difficulty['proof-of-work'];
+
     lib.get_hashrate(function(hashrate) {
       lib.get_connectioncount(function(connections){
         lib.get_blockcount(function(blockcount) {
