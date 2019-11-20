@@ -3,11 +3,23 @@ Digiquidus Explorer - 1.6.1
 
 An open source block explorer written in node.js.
 
-### See it in action
+### See this fork in action
 
-*  [DigitalNote XDN](http://digitalnote.blockcrawlers.xyz/)
+*  [DigitalNote XDN](https://xdn-explorer.com/)
 
 *note: If you would like your instance mentioned here contact me*
+
+### Updated Preqs for this fork
+
+* **LetsEncrypt**
+```
+sudo apt-get -y install aptitude    
+sudo aptitude -y install letsencrypt
+sudo letsencrypt certonly --standalone --email email@example.com --agree-tos -d example.com -d www.example.com
+   ``` 
+* **[ipstack.com](ipstack.com) - sign up for a free account and get API Key**
+
+Also check out [Beginners Guide for Iquidus Explorer Setup](https://gist.github.com/samqju/b9fc6c007f083e6429387051e24da1c3)
 
 ### Requires
 
