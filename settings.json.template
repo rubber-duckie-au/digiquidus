@@ -4,160 +4,167 @@
   Please edit settings.json, not settings.json.template
 */
 {
-  // name your instance!
-  "title": "DigitalNote XDN Explorer",
+    // name your instance!
+    "title": "DigitalNote XDN Explorer",
 
-  "address": "127.0.0.1:80",
+    "address": "127.0.0.1:3001",
 
-  // coin name
-  "coin": "DigitalNote",
+    // coin name
+    "coin": "DigitalNote",
 
-  // coin symbol
-  "symbol": "XDN",
+    // coin symbol
+    "symbol": "XDN",
 
-  // logo
-  "logo": "/images/logo.png",
+    //URL of site that is hosting explorer e.g. example.com (NOT www.example.com)
 
-  // favicon
-  "favicon": "public/favicon.ico",
+    "site_url": "example.com"
 
-  // Uses bootswatch themes (http://bootswatch.com/)
-  // Valid options:
-  //     Cerulean, Cosmo, Cyborg, Darkly, Flatly, Journal, Lumen, Paper,
-  //     Readable, Sandstone, Simplex, Slate, Spacelab, Superhero, United, Yeti
-  // theme (see /public/themes for available themes)
-  "theme": "Cyborg",
+    // logo
+    "logo": "/images/logo.png",
 
-  // port to listen for requests on.
-  "port" : 80,
+    // favicon
+    "favicon": "public/favicon.ico",
 
-  // database settings (MongoDB)
-  "dbsettings": {
-    "user": "digiquidus",
-    "password": "3xp!0reR",
-    "database": "explorerdb",
-    "address": "localhost",
-    "port": 27017
-  },
+    // Uses bootswatch themes (http://bootswatch.com/)
+    // Valid options:
+    //     Cerulean, Cosmo, Cyborg, Darkly, Flatly, Journal, Lumen, Paper,
+    //     Readable, Sandstone, Simplex, Slate, Spacelab, Superhero, United, Yeti
+    // theme (see /public/themes for available themes)
+    "theme": "Slate",
 
-  //update script settings
-  "update_timeout": 10,
-  "check_timeout": 250,
+    // port to listen for requests on.
+    "port": 80,
 
-  // wallet settings
-  "wallet": {
-    "host": "localhost",
-    "port": 18094,
-    "user": "digitalnoterpc",
-    "pass": "SomeOtherWorldlyPasswordGoesHere1"
-  },
+    // database settings (MongoDB)
+    "dbsettings": {
+        "user": "digiquidus",
+        "password": "3xp!0reR",
+        "database": "explorerdb",
+        "address": "localhost",
+        "port": 27017
+    },
 
-  // confirmations
-  "confirmations": 15,
+    //update script settings
+    "update_timeout": 10,
+    "check_timeout": 250,
 
-  // language settings
-  "locale": "locale/en.json",
+    // wallet settings
+    "wallet": {
+        "host": "localhost",
+        "port": 18094,
+        "user": "YOUR RPC USERNAME",
+        "pass": "YOUR VERY STRONG RPC PASSWORD"
+    },
 
-  // menu settings
-  "display": {
-    "api": true,
-    "markets": true,
-    "richlist": true,
-    "twitter": false,
-    "facebook": false,
-    "googleplus": false,
-    "youtube": false,
-    "search": true,
-    "movement": true,
-    "network": true
-  },
+    // confirmations
+    "confirmations": 90,
 
-  // index page (valid options for difficulty are POW, POS or Hybrid)
-  "index": {
-    "show_hashrate": true,
-    "difficulty": "Hyrbrid",
-    "last_txs": 100
-  },
+    // language settings
+    "locale": "locale/en.json",
 
-  // ensure links on API page are valid
-  "api": {
-    "blockindex": 0,
-    "blockhash": "00000d8e7d39218c4c02132e95a3896d46939b9b95624cf9dd2b0b794e6c216a",
-    "txhash": "3b9d152cb1370d54d1ea30d5e334a83a41ca9403011495b8743a53d53423004a",
-    "address": "dZ33rLDBTCmjQUD49FzdRERvcVmDhvfHuy"
-  },
+    // menu settings
+    "display": {
+        "api": true,
+        "markets": true,
+        "richlist": true,
+        "twitter": false,
+        "facebook": false,
+        "googleplus": false,
+        "youtube": false,
+        "search": true,
+        "movement": true,
+        "network": true
+    },
 
-  // market settings
-  //supported markets: bittrex, poloniex, yobit, empoex, bleutrade, cryptopia, ccex
-  //default market is loaded by default and determines last price in header
-  "markets": {
-    "coin": "XDN",
-    "exchange": "BTC",
-    "enabled": ["bittrex"],
-    "cryptopia_id": "0",
-    "ccex_key" : "Get-Your-Own-Key",
-    "default": "bittrex"
-  },
+    // index page (valid options for difficulty are POW, POS or Hybrid)
+    "index": {
+        "show_hashrate": true,
+        "difficulty": "Hybrid",
+        "last_txs": 100
+    },
 
-  // richlist/top100 settings
-  "richlist": {
-    "distribution": true,
-    "received": true,
-    "balance": true
-  },
-  // movement page settings
-  // min amount: show transactions greater than this value
-  // low flag: greater than this value flagged yellow
-  // high flag: greater than this value flagged red
-  "movement": {
-    "min_amount": 100,
-    "low_flag": 1000,
-    "high_flag": 5000
-  },
+    // ensure links on API page are valid
+    "api": {
+        "blockindex": 0,
+        "blockhash": "00000d8e7d39218c4c02132e95a3896d46939b9b95624cf9dd2b0b794e6c216a",
+        "txhash": "3b9d152cb1370d54d1ea30d5e334a83a41ca9403011495b8743a53d53423004a",
+        "address": "dS3voFtYMohSD1nPfqamwXRHLQnvipam7e"
+    },
 
-  // twitter, facebook, googleplus, youtube
-  "twitter": "digiquidus",
-  "facebook": "yourfacebookpage",
-  "googleplus": "yourgooglepluspage",
-  "youtube": "youryoutubechannel",
+    // market settings
+    //supported markets: bittrex, poloniex, yobit, empoex, bleutrade, cryptopia, ccex
+    //default market is loaded by default and determines last price in header
+    "markets": {
+        "coin": "XDN",
+        "exchange": "BTC",
+        "enabled": [ "bittrex", "hitbtc" ],
+        "cryptopia_id": "0",
+        "ccex_key": "Get-Your-Own-Key",
+        "default": "bittrex"
+    },
 
-  //genesis
-  "genesis_tx": "3b9d152cb1370d54d1ea30d5e334a83a41ca9403011495b8743a53d53423004a",
-  "genesis_block": "00000d8e7d39218c4c02132e95a3896d46939b9b95624cf9dd2b0b794e6c216a",
+    // richlist/top100 settings
+    "richlist": {
+        "distribution": true,
+        "received": true,
+        "balance": true
+    },
+    // movement page settings
+    // min amount: show transactions greater than this value
+    // low flag: greater than this value flagged yellow
+    // high flag: greater than this value flagged red
+    "movement": {
+        "min_amount": 100,
+        "low_flag": 1000,
+        "high_flag": 5000
+    },
 
-  //heavy (enable/disable additional heavy features)
-  "heavy": false,
+    // twitter, facebook, googleplus, youtube
+    "twitter": "digiquidus",
+    "facebook": "yourfacebookpage",
+    "googleplus": "yourgooglepluspage",
+    "youtube": "youryoutubechannel",
 
-  //amount of txs to index per address (stores latest n txs)
-  "txcount": 100,
+    //genesis
+    "genesis_tx": "3b9d152cb1370d54d1ea30d5e334a83a41ca9403011495b8743a53d53423004a",
+    "genesis_block": "00000d8e7d39218c4c02132e95a3896d46939b9b95624cf9dd2b0b794e6c216a",
 
-  //show total sent & received on address page (set false if PoS)
-  "show_sent_received": true,
+    //heavy (enable/disable additional heavy features)
+    "heavy": false,
 
-  // how to calculate current coin supply
-  // COINBASE : total sent from coinbase (PoW)
-  // GETINFO : retreive from getinfo api call (PoS)
-  // HEAVY: retreive from heavys getsupply api call
-  // BALANCES : total of all address balances
-  // TXOUTSET : retreive from gettxoutsetinfo api call
-  "supply": "COINBASE",
+    //amount of txs to index per address (stores latest n txs)
+    "txcount": 100,
 
-  // how to acquire network hashrate
-  // getnetworkhashps: uses getnetworkhashps api call, returns in GH/s
-  // netmhashps: uses getmininginfo.netmhashpsm returns in MH/s
-  "nethash": "getnetworkhashps",
+    //show total sent & received on address page (set false if PoS)
+    "show_sent_received": true,
 
-  // nethash unitd: sets nethash API return units
-  // valid options: "P" (PH/s), "T" (TH/s), "G" (GH/s), "M" (MH/s), "K" (KH/s)
-  "nethash_units": "M",
+    // how to calculate current coin supply
+    // COINBASE : total sent from coinbase (PoW)
+    // GETINFO : retreive from getinfo api call (PoS) - **USE THIS FOR XDN***
+    // HEAVY: retreive from heavys getsupply api call
+    // BALANCES : total of all address balances
+    // TXOUTSET : retreive from gettxoutsetinfo api call
+    "supply": "GETINFO",
 
-  // Address labels
-  // example : "JhbrvAmM7kNpwA6wD5KoAsbtikLWWMNPcM": {"label": "This is a burn address", "type":"danger", "url":"http://example.com"}
-  // label (required) = test to display
-  // type (optional) = class of label, valid types: default, primary, warning, danger, success
-  // url (optional) = url to link to for more information
-  "labels": {
-  //  "JSoEdU717hvz8KQVq2HfcqV9A79Wihzusu": {"label": "Developers address", "type":"primary", "url":"http://example.com"},
-  //  "JSWVXHWeYNknPdG9uDrcBoZHztKMFCsndw": {"label": "Cryptsy"}
-  }
+    // how to acquire network hashrate
+    // getnetworkhashps: uses getnetworkhashps api call, returns in GH/s
+    // netmhashps: uses getmininginfo.netmhashpsm returns in MH/s
+    "nethash": "netmhashps",
+
+    // nethash unitd: sets nethash API return units
+    // valid options: "P" (PH/s), "T" (TH/s), "G" (GH/s), "M" (MH/s), "K" (KH/s)
+    "nethash_units": "G",
+
+    //ipstack.com, get yourself a free account and API Key
+    "ipstack_apikey": "AAAABBBBCCCCCDuckie"
+
+    // Address labels
+    // example : "JhbrvAmM7kNpwA6wD5KoAsbtikLWWMNPcM": {"label": "This is a burn address", "type":"danger", "url":"http://example.com"}
+    // label (required) = test to display
+    // type (optional) = class of label, valid types: default, primary, warning, danger, success
+    // url (optional) = url to link to for more information
+    "labels": {
+        //  "JSoEdU717hvz8KQVq2HfcqV9A79Wihzusu": {"label": "Developers address", "type":"primary", "url":"http://example.com"},
+        //  "JSWVXHWeYNknPdG9uDrcBoZHztKMFCsndw": {"label": "Cryptsy"}
+    }
 }
