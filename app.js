@@ -165,16 +165,5 @@ app.use(function(err, req, res, next) {
     });
 });
 
-// http > https redirect
-app.enable('trust proxy');
-app.use (function (req, res, next) {
-    if (req.secure) {
-        console.log(req.protocol, req.secure);
-        next();
-    } else {
-        console.log('redirected');
-        res.redirect('https://' + req.headers.host + req.url);
-    }
-});
 
 module.exports = app;
