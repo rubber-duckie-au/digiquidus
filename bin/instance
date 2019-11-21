@@ -56,19 +56,8 @@ db.connect(dbString, function() {
     }); 
   }
 
-  var http=require('http');
-  http.createServer(app).listen(80);
-
-/* redirect http > https 
-   http.createServer(function (req, res) {
-    res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
-    res.end();
-  }).listen(80);
-*/
-
-  var server = require('https');
   var fs = require('fs');
-  var certRoot = '/etc/letsencrypt/live/' + settings.site_url + '/';
+  var certRoot = '/etc/letsencrypt/live/xdn-explorer.com/';
 
   var options = {
   ca: fs.readFileSync(certRoot + 'chain.pem'),
@@ -76,11 +65,17 @@ db.connect(dbString, function() {
   key: fs.readFileSync(certRoot + 'privkey.pem'),
   };
 
-  server.createServer(options, app).listen(443);
+var http = require('http')
+var https = require('https')
+ 
 
-  /*
-  var server = app.listen(app.get('port'), function() {
-    debug('Express server listening on port ' + server.address().port);
-  });
-  */
+ 
+http.createServer(function(req, res) {   
+        res.writeHead(301, {"Location": "https://" + req.headers['host'] + req.url});
+console.log('redirected')
+        res.end();
+}).listen(80);
+ 
+https.createServer(options, app).listen(443); 
+
 });
