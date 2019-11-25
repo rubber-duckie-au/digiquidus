@@ -29,6 +29,7 @@ mongoose.connect(dbString, function(err) {
         if (body[i].addr.indexOf("]") > -1) {
               var temp_address = body[i].addr.split(']')[0]
               var address = temp_address.replace('[', '')
+        }
         else {var address = body[i].addr.split(':')[0];}
         db.find_peer(address, function(peer) {
           if (peer) {
