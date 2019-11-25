@@ -9,7 +9,7 @@ An open source block explorer written in node.js.
 
 *note: If you would like your instance mentioned here contact me*
 
-### Updated Preqs for this fork
+### Updated Prereqs for this fork
 
 * **LetsEncrypt**
 ```
