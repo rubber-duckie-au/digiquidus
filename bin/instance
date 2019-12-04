@@ -55,7 +55,7 @@ db.connect(dbString, function() {
       }
     }); 
   }
-  if (settings.https_site == true {
+  if (settings.https_site == true ) {
     var fs = require('fs');
     var certRoot = '/etc/letsencrypt/live/xdn-explorer.com/';
 
