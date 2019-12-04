@@ -55,27 +55,32 @@ db.connect(dbString, function() {
       }
     }); 
   }
+  if (settings.https_site == true {
+    var fs = require('fs');
+    var certRoot = '/etc/letsencrypt/live/xdn-explorer.com/';
 
-  var fs = require('fs');
-  var certRoot = '/etc/letsencrypt/live/xdn-explorer.com/';
+    var options = {
+      ca: fs.readFileSync(certRoot + 'chain.pem'),
+      cert: fs.readFileSync(certRoot + 'cert.pem'),
+      key: fs.readFileSync(certRoot + 'privkey.pem'),
+    };
 
-  var options = {
-  ca: fs.readFileSync(certRoot + 'chain.pem'),
-  cert: fs.readFileSync(certRoot + 'cert.pem'),
-  key: fs.readFileSync(certRoot + 'privkey.pem'),
-  };
-
-var http = require('http')
-var https = require('https')
+    var http = require('http')
+    var https = require('https')
  
 
  
-http.createServer(function(req, res) {   
-        res.writeHead(301, {"Location": "https://" + req.headers['host'] + req.url});
-console.log('redirected')
-        res.end();
-}).listen(80);
+    http.createServer(function(req, res) {   
+            res.writeHead(301, {"Location": "https://" + req.headers['host'] + req.url});
+            console.log('redirected')
+            res.end();
+    }).listen(80);
  
-https.createServer(options, app).listen(443); 
+    https.createServer(options, app).listen(443); 
+  }
+  else {
+    var http=require('http');
+    http.createServer(app).listen(80);
+  }
 
 });
