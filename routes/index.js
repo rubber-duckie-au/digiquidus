@@ -194,6 +194,14 @@ router.get('/network', function(req, res) {
   res.render('network', {active: 'network'});
 });
 
+router.get('/masternodes', function(req, res) {
+  res.render('masternodes', {active: 'masternodes'});
+});
+
+router.get('/mempool', function(req, res) {
+  res.render('mempool', { active: 'mempool'});
+});
+
 router.get('/reward', function(req, res){
   //db.get_stats(settings.coin, function (stats) {
     console.log(stats);
@@ -281,29 +289,48 @@ router.get('/qr/:string', function(req, res) {
   }
 });
 
+router.get('/ext/masternodes', function(req, res) {
+  lib.get_masternodelist(function(masternodelist) {
+              res.send({data: masternodelist});
+  });
+  });
+
+router.get('/ext/mempooltx', function(req, res) {
+  lib.get_mempooltx(function(mempooltx) {
+              res.send({data: mempooltx});
+  });
+  });
+
 router.get('/ext/summary', function(req, res) {
   lib.get_difficulty(function(difficulty) {
     difficultyHybrid = ''
-    difficultyHybrid = 'PoS: ' + difficulty['proof-of-stake'];
-    difficulty = 'PoW: ' + difficulty['proof-of-work'];
+    difficultyHybrid = 'PoS: ' + (difficulty['proof-of-stake']).toFixed(0);
+    difficulty = 'PoW: ' + (difficulty['proof-of-work']).toFixed(0);
 
     lib.get_hashrate(function(hashrate) {
       lib.get_connectioncount(function(connections){
         lib.get_blockcount(function(blockcount) {
-          db.get_stats(settings.coin, function (stats) {
-            if (hashrate == 'There was an error. Check your console.') {
-              hashrate = 0;
-            }
-            res.send({ data: [{
-              difficulty: difficulty,
-              difficultyHybrid: difficultyHybrid,
-              supply: stats.supply,
-              hashrate: hashrate,
-              lastPrice: stats.last_price,
-              connections: connections,
-              blockcount: blockcount
+          lib.get_masternodecount(function(masternodecount){
+            lib.get_mempoolcount(function(mempoolcount) {
+	    db.get_stats(settings.coin, function (stats) {
+              if (hashrate == 'There was an error. Check your console.') {
+                hashrate = 0;
+              }
+              res.send({ data: [{
+                difficulty: difficulty,
+                difficultyHybrid: difficultyHybrid,
+                supply: stats.supply,
+                hashrate: hashrate,
+                lastPrice: stats.last_price,
+                connections: connections,
+                blockcount: blockcount,
+                masternodecount: masternodecount,
+                mempoolcount: mempoolcount
+               
             }]});
+           });
           });
+         });
         });
       });
     });

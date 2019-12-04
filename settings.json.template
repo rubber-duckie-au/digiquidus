@@ -19,6 +19,9 @@
 
     "site_url": "example.com",
 
+    //Specific whether you want a http or https instance (if https: true, you must run LetsEncrypt first)
+    "https_site": "true",
+
     // logo
     "logo": "/images/logo.png",
 
@@ -73,7 +76,10 @@
         "youtube": false,
         "search": true,
         "movement": true,
-        "network": true
+        "network": true,
+	      "mempool": true,
+      	"masternodes": true
+
     },
 
     // index page (valid options for difficulty are POW, POS or Hybrid)

@@ -6,6 +6,13 @@ var mongoose = require('mongoose')
 
 var COUNT = 5000; //number of blocks to index
 
+if ( settings.https_site ) {
+ base_uri = 	'https://' + settings.site_url;
+}
+else {
+ base_uri = 	'http://' + settings.site_url;	
+}
+
 function exit() {
   mongoose.disconnect();
   process.exit(0);
@@ -23,7 +30,7 @@ mongoose.connect(dbString, function(err) {
     console.log('Aborting');
     exit();
   } else {
-    request({uri: 'https://' + settings.site_url + '/api/getpeerinfo', json: true}, function (error, response, body) {
+    request({uri: base_uri + '/api/getpeerinfo', json: true}, function (error, response, body) {
       lib.syncLoop(body.length, function (loop) {
         var i = loop.iteration();
         if (body[i].addr.indexOf("]") > -1) {
