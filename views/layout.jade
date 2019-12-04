@@ -31,8 +31,7 @@ html
             $("#difficultyHybrid").text(json.data[0].difficultyHybrid);
             $("#hashrate").text(json.data[0].hashrate);
             $("#lastPrice").text(json.data[0].lastPrice.toFixed(8));
-            $("#lblConnections").text(json.data[0].connections + ' connections');
-            $("#lblBlockcount").text(json.data[0].blockcount + ' blocks');
+            $("#lblConnections").text('| ' + json.data[0].blockcount + ' blocks | ' + json.data[0].masternodecount + ' masternodes | ' + json.data[0].connections + ' connections |');
             $("#lblX1").text(' ');
           }});
         }
@@ -110,6 +109,16 @@ html
                 a.navbar-link(href='/network')
                   span.fa.fa-share-alt
                   span.menu-text #{settings.locale.menu_network}
+            if settings.display.masternodes == true
+              li#network
+                a.navbar-link(href='/masternodes')
+                  span.glyphicon.glyphicon-tasks
+                  span.menu-text #{settings.locale.menu_masternodes}
+            if settings.display.mempool == true
+              li#mempool
+                a.navbar-link.loading(href='/mempool') 
+                  span.glyphicon.glyphicon-cloud
+                  span.menu-text #{settings.locale.menu_mempool}
             if settings.display.richlist == true
               li#richlist
                 a.navbar-link(href='/richlist')
@@ -193,9 +202,6 @@ html
     block content
     .navbar.navbar-default.navbar-fixed-bottom.hidden-xs
       .col-md-4
-        ul.nav.navbar-nav
-          li.pull-left
-           label#lblBlockcount
         ul.nav.navbar-nav
           li.pull-left
            label#lblConnections
