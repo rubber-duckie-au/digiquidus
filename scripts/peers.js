@@ -6,7 +6,7 @@ var mongoose = require('mongoose')
 
 var COUNT = 5000; //number of blocks to index
 
-if (settings.https_site == true {
+if ( settings.https_site ) {
  base_uri = 	'https://' + settings.site_url;
 }
 else {
