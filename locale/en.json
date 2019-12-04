@@ -13,6 +13,8 @@
     "menu_movement": "Movement",
     "menu_node": "Nodes",
     "menu_network": "Network",
+    "menu_masternodes": "Masternodes",
+    "menu_mempool": "Mempool",
 
     // explorer view
     "ex_title": "Block Explorer",
