@@ -57,7 +57,7 @@ db.connect(dbString, function() {
   }
   if ( settings.https_site ) {
     var fs = require('fs');
-    var certRoot = '/etc/letsencrypt/live/xdn-explorer.com/';
+    var certRoot = '/etc/letsencrypt/live/' + settings.address + '/'
 
     var options = {
       ca: fs.readFileSync(certRoot + 'chain.pem'),
