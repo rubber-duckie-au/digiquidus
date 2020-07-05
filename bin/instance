@@ -71,9 +71,16 @@ db.connect(dbString, function() {
 
  
     http.createServer(function(req, res) {   
-            res.writeHead(301, {"Location": "https://" + req.headers['host'] + req.url});
-            console.log('redirected')
-            res.end();
+	    if (req.url.indexOf('/.well-known/acme-challenge/') >= 0) {
+	      console.log(req.url)
+	      res.writeHead(200); 
+        var contents = fs.readFileSync('./public' + req.url)
+	      res.end(contents);
+      } else {
+	      res.writeHead(301, {"Location": "https://" + req.headers['host'] + req.url});
+        console.log('redirected')
+        res.end();
+      }
     }).listen(80);
  
     https.createServer(options, app).listen(443); 
