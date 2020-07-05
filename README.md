@@ -10,14 +10,31 @@ An open source block explorer written in node.js.
 *note: If you would like your instance mentioned here contact me*
 
 ### Updated Prereqs for this fork
+* **LetsEncrypt** (if you choose https)
+* **[ipstack.com](ipstack.com) - sign up for a free account and get API Key**
 
-* **LetsEncrypt**
+### **LetsEncrypt**
+Only perform this step if you have a domain name linked and wish to use https (and this is reflected in yout settings file)
 ```
 sudo apt-get -y install aptitude    
 sudo aptitude -y install letsencrypt
 sudo letsencrypt certonly --standalone --email email@example.com --agree-tos -d example.com -d www.example.com
    ``` 
-* **[ipstack.com](ipstack.com) - sign up for a free account and get API Key**
+   **PLEASE NOTE: Requirements for Certificate Auto-Renewal**
+   1. Create Acme Challenge folders to serve AFTER you have finished the Explorer installation
+   ```
+   cd explorer/public
+   sudo mkdir -p .well-known/acme-challenge
+   sudo chmod 755 .well-known
+   sudo chmod 755 .well-known/acme-challenge
+   ```
+   2. Update your ```/etc/letsencrypt/renewal/<domain>.conf ``` file with the following lines (replace ```"<user>"``` with your username):
+   ```
+   authenticator = webroot
+   webroot_path = /<user>/explorer/public
+   ``` 
+
+### Explorer Build
 
 Also check out [Beginners Guide for Iquidus Explorer Setup](https://gist.github.com/samqju/b9fc6c007f083e6429387051e24da1c3)
 
