@@ -243,7 +243,7 @@ router.get('/mempool', function(req, res) {
 });
 
 router.get('/reward', function(req, res){
-  //db.get_stats(settings.coin, function (stats) {
+  db.get_stats(settings.coin, function (stats) {
   console.log(stats);
   db.get_heavy(settings.coin, function (heavy) {
     //heavy = heavy;
