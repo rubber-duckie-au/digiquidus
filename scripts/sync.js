@@ -1,12 +1,12 @@
 var mongoose = require('mongoose')
-    , db = require('../lib/database')
-    , Tx = require('../models/tx')
-    , Address = require('../models/address')
-    , AddressTx = require('../models/addresstx')
-    , Richlist = require('../models/richlist')
-    , Stats = require('../models/stats')
-    , settings = require('../lib/settings')
-    , fs = require('fs');
+  , db = require('../lib/database')
+  , Tx = require('../models/tx')
+  , Address = require('../models/address')
+  , AddressTx = require('../models/addresstx')
+  , Richlist = require('../models/richlist')
+  , Stats = require('../models/stats')
+  , settings = require('../lib/settings')
+  , fs = require('fs');
 
 var mode = 'update';
 var database = 'index';
@@ -40,20 +40,20 @@ if (process.argv[2] == 'index') {
   } else {
     switch(process.argv[3])
     {
-    case 'update':
-      mode = 'update';
-      break;
-    case 'check':
-      mode = 'check';
-      break;
-    case 'reindex':
-      mode = 'reindex';
-      break;
-    case 'reindex-rich':
-      mode = 'reindex-rich';
-      break;
-    default:
-      usage();
+      case 'update':
+        mode = 'update';
+        break;
+      case 'check':
+        mode = 'check';
+        break;
+      case 'reindex':
+        mode = 'reindex';
+        break;
+      case 'reindex-rich':
+        mode = 'reindex-rich';
+        break;
+      default:
+        usage();
     }
   }
 } else if (process.argv[2] == 'market'){
@@ -148,21 +148,21 @@ is_locked(function (exists) {
                     });
                   }
                   if (mode == 'reindex') {
-                   Tx.remove({}, function(err) {
-                      Address.deleteMany({}, function(err2) {
+                    Tx.deleteMany({}, function(err) { 
+                      Address.deleteMany({}, function(err2) { 
                         AddressTx.deleteMany({}, function(err3) {
                           Richlist.updateOne({coin: settings.coin}, {
                             received: [],
                             balance: [],
-                          }, function(err3) {
-                            Stats.updateOne({coin: settings.coin}, {
+                          }, function(err3) { 
+                            Stats.updateOne({coin: settings.coin}, { 
                               last: 0,
                               count: 0,
                               supply: 0,
                             }, function() {
                               console.log('index cleared (reindex)');
-                            });
-                            db.update_tx_db(settings.coin, 1, stats.count, settings.check_timeout, function(){
+                            }); 
+                            db.update_tx_db(settings.coin, 1, stats.count, settings.update_timeout, function(){
                               db.update_richlist('received', function(){
                                 db.update_richlist('balance', function(){
                                   db.get_stats(settings.coin, function(nstats){
