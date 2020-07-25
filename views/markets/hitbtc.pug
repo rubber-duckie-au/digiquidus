@@ -5,31 +5,31 @@ block market_view
     console.log('#{marketdata.data}');
   .row
     .col-md-12  
-      .panel.panel-default
-        .panel-heading
+      .card.card-default
+        .card-header
           strong #{settings.locale.hitbtc} - #{marketdata.coin}/#{marketdata.exchange} - #{settings.locale.mkt_hours}
           a(href='#')
-            span.fa.fa-line-chart.pull-right.view-chart-disabled.digiquidus.market-toggle(data-toggle='tooltip', data-placement='bottom', title=settings.locale.mkt_no_chart) 
+            span.fa.fa-line-chart.pull-right.view-chart-disabled.digiquidus.market-toggle(data-toggle='tooltip', data-placement='bottom', title= t('market.no_chart'))
         table.table.table-bordered.summary-table 
           thead
             tr
               th #{settings.locale.mkt_high}
               th #{settings.locale.mkt_low}
               th #{settings.locale.mkt_volume}
-              th.hidden-xs #{settings.locale.mkt_top_bid}
-              th.hidden-xs #{settings.locale.mkt_top_ask}
-              th.hidden-xs #{settings.locale.mkt_yesterday}
-              th.hidden-xs #{settings.locale.mkt_last}
+              th.d-none.d-sm-block #{settings.locale.mkt_top_bid}
+              th.d-none.d-sm-block #{settings.locale.mkt_top_ask}
+              th.d-none.d-sm-block #{settings.locale.mkt_yesterday}
+              th.d-none.d-sm-block #{settings.locale.mkt_last}
               th #{settings.locale.mkt_change}
           tbody
             tr
               td #{marketdata.data.summary.high}
               td #{marketdata.data.summary.low}
               td #{marketdata.data.summary.volume}
-              td.hidden-xs #{marketdata.data.summary.bid}
-              td.hidden-xs #{marketdata.data.summary.ask}
-              td.hidden-xs #{marketdata.data.summary.open}
-              td.hidden-xs #{marketdata.data.summary.last}
+              td.d-none.d-sm-block #{marketdata.data.summary.bid}
+              td.d-none.d-sm-block #{marketdata.data.summary.ask}
+              td.d-none.d-sm-block #{marketdata.data.summary.open}
+              td.d-none.d-sm-block #{marketdata.data.summary.last}
               - var hitbtc_change = (100 - ((parseFloat(marketdata.data.summary.open)/parseFloat(marketdata.data.summary.last))*100)).toFixed(2);
               if hitbtc_change >= 0
                 td.success +#{hitbtc_change} %
@@ -37,15 +37,15 @@ block market_view
                 td.danger #{hitbtc_change} %
   .row
     .col-md-6.col-xs-12
-      .panel.panel-default
-        .panel-heading
-          h3.panel-title #{settings.locale.mkt_buy_orders}
+      .card.card-default
+        .card-header
+          h3.card-title #{settings.locale.mkt_buy_orders}
         table.table.table-striped.table-bordered.order-table
           thead
             tr
               th #{settings.locale.mkt_price} (#{marketdata.exchange})
               th #{settings.locale.mkt_amount} (#{marketdata.coin})
-              th.hidden-xs #{settings.locale.mkt_total} (#{marketdata.exchange})
+              th.d-none.d-sm-block #{settings.locale.mkt_total} (#{marketdata.exchange})
           tbody
             each buy in marketdata.data.buys
               tr
@@ -53,18 +53,18 @@ block market_view
                   =buy.price
                 td
                   =buy.amount
-                td.hidden-xs
+                td.d-none.d-sm-block
                   =buy.total
     .col-md-6.col-xs-12
-      .panel.panel-default
-        .panel-heading
-          h3.panel-title #{settings.locale.mkt_sell_orders}
+      .card.card-default
+        .card-header
+          h3.card-title #{settings.locale.mkt_sell_orders}
         table.table.table-striped.table-bordered.order-table
           thead
             tr
               th #{settings.locale.mkt_price} (#{marketdata.exchange})
               th #{settings.locale.mkt_amount} (#{marketdata.coin})
-              th.hidden-xs #{settings.locale.mkt_total} (#{marketdata.exchange})
+              th.d-none.d-sm-block #{settings.locale.mkt_total} (#{marketdata.exchange})
           tbody
             each sell in marketdata.data.sells
               tr
@@ -72,26 +72,26 @@ block market_view
                   =sell.price
                 td
                   =sell.amount
-                td.hidden-xs
+                td.d-none.d-sm-block
                   =sell.total
   .row   
     .col-md-12
-      .panel.panel-default
-        .panel-heading
-          h3.panel-title #{settings.locale.mkt_trade_history}
+      .card.card-default
+        .card-header
+          h3.card-title #{settings.locale.mkt_trade_history}
         table.table.table-hover.history-table.table-bordered(cellspacing="0")
           thead
             tr
-              th.hidden-xs #{settings.locale.mkt_type}
+              th.d-none.d-sm-block #{settings.locale.mkt_type}
               th #{settings.locale.mkt_amount} (#{marketdata.coin})
               th #{settings.locale.mkt_price} (#{marketdata.exchange})
               th #{settings.locale.mkt_total} (#{marketdata.exchange})
-              th.hidden-xs #{settings.locale.mkt_time_stamp}
+              th #{settings.locale.mkt_time_stamp}
           tbody
             each order in marketdata.data.history
               if order.side == 'buy'
                 tr.success
-                  td.hidden-xs
+                  td.d-none.d-sm-block
                     =order.side.toUpperCase()
                   td
                     =order.quantity
@@ -99,11 +99,11 @@ block market_view
                     =order.price
                   td
                     =(order.quantity * order.price).toFixed(8)
-                  td.hidden-xs
+                  td.d-none.d-sm-block
                     =order.timestamp
               else
                 tr.danger 
-                  td.hidden-xs
+                  td.d-none.d-sm-block
                     =order.side.toUpperCase()
                   td
                     =order.quantity
@@ -111,6 +111,6 @@ block market_view
                     =order.price
                   td
                     =(order.quantity * order.price).toFixed(8)
-                  td.hidden-xs
+                  td.d-none.d-sm-block
                     =order.timestamp
       .footer-padding
