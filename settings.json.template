@@ -85,6 +85,7 @@
         "network": true,
 	"mempool": true,
       	"masternodes": true,
+    // Settings to switch navbar theme, leaving both false will use the 'primary' navbar
 	"navbar_dark": false,
         "navbar_light": false
 
