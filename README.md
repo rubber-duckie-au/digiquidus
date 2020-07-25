@@ -1,4 +1,4 @@
-Digiquidus Explorer - 1.6.2
+Digiquidus Explorer - 1.7.0
 ================
 
 An open source block explorer written in node.js.
@@ -40,8 +40,8 @@ Also check out [Beginners Guide for Iquidus Explorer Setup](https://gist.github.
 
 ### Requires
 
-    *  node.js >= 0.10.28
-    *  mongodb 2.6.x
+    *  node.js >= 8.17.0 (12.14.0 is advised for updated dependencies)
+    *  mongodb 4.2.x
     *  *coind
 
 ### Install MongoDB
@@ -78,7 +78,7 @@ Create user with read/write access:
 
     > db.createUser( { user: "digiquidus", pwd: "3xp!0reR", roles: [ "readWrite" ] } )
 
-note: If you're using mongo shell 2.4.x, use the following to create your user:
+*Note: If you're using mongo shell 4.2.x, use the following to create your user:
 
     > db.addUser( { user: "username", pwd: "password", roles: [ "readWrite"] })
 
