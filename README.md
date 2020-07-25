@@ -1,4 +1,4 @@
-Digiquidus Explorer - 1.7.3
+Digiquidus Explorer - 1.7.4
 ================
 
 An open source block explorer written in node.js.
