@@ -15,6 +15,14 @@ var express = require('express')
 
 var app = express();
 
+// enable CORS
+
+//app.use(function(req, res, next) {
+//  res.header("Access-Control-Allow-Origin", "*");
+//  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//  next();
+//});
+
 // bitcoinapi
 bitcoinapi.setWalletDetails(settings.wallet);
 if (settings.heavy != true) {
@@ -175,7 +183,7 @@ app.use('/ext/getlasttxsajax/:min', function(req,res){
 
 app.use('/ext/getaddresstxsajax/:address', function(req,res){
     req.query.length = parseInt(req.query.length);
-    if(isNaN(req.query.length) || req.query.length > settings.txcount){
+    if(isNaN(req.query.length) || req.query.length > settings.index.last_txs){
         req.query.length = settings.txcount;
     }
     if(isNaN(req.query.start) || req.query.start < 0){
@@ -190,13 +198,13 @@ app.use('/ext/getaddresstxsajax/:address', function(req,res){
 
                 txs[i].vout.forEach(function (r) {
                     if (r.addresses == req.params.address) {
-                        out += r.amount;
+                        out = r.amount;
                     }
                 });
 
                 txs[i].vin.forEach(function (s) {
                     if (s.addresses == req.params.address) {
-                        vin += s.amount
+                        vin = s.amount
                     }
                 });
 
@@ -251,7 +259,7 @@ app.set('locale', locale);
 app.set('display', settings.display);
 app.set('markets', settings.markets);
 app.set('twitter', settings.twitter);
-app.set('facebook', settings.facebook); 
+app.set('facebook', settings.youtube);
 app.set('googleplus', settings.googleplus);
 app.set('youtube', settings.youtube);
 app.set('genesis_block', settings.genesis_block);

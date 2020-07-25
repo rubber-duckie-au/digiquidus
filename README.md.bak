@@ -152,10 +152,11 @@ sync.js (located in scripts/) is used for updating the local databases. This scr
 Digiquidus Explorer is intended to be generic so it can be used with any wallet following the usual standards. The wallet must be running with atleast the following flags
 
     -daemon -txindex
-    
-### Security
 
-Ensure mongodb is not exposed to the outside world via your mongo config or a firewall to prevent outside tampering of the indexed chain data. 
+### Donate
+
+    BTC: 168hdKA3fkccPtkxnX8hBrsxNubvk4udJi
+    XDN: JZp9893FMmrm1681bDuJBU7c6w11kyEY7D
 
 ### Known Issues
 
@@ -204,7 +205,7 @@ Where [SIZE] is an integer higher than the default.
 
 ### License
 
-Copyright (c) 2015, Iquidus Technology  
+Copyright (c) 2015, Digiquidus Technology  
 Copyright (c) 2015, Luke Williams  
 All rights reserved.
 
@@ -218,7 +219,7 @@ modification, are permitted provided that the following conditions are met:
   this list of conditions and the following disclaimer in the documentation
   and/or other materials provided with the distribution.
 
-* Neither the name of Iquidus Technology nor the names of its
+* Neither the name of Digiquidus Technology nor the names of its
   contributors may be used to endorse or promote products derived from
   this software without specific prior written permission.
 

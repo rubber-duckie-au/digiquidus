@@ -5,9 +5,9 @@ block market_view
     .col-md-12  
       .card.card-default
         .card-header
-          strong #{settings.locale.empoex} - #{marketdata.coin}/#{marketdata.exchange} - #{settings.locale.mkt_hours}
+          strong #{settings.locale.yobit} - #{marketdata.coin}/#{marketdata.exchange} - #{settings.locale.mkt_hours}
           a(href='#')
-            span.fa.fa-line-chart.pull-right.view-chart-disabled.digiquidus.market-toggle(data-toggle='tooltip', data-placement='bottom', title=settings.locale.mkt_no_chart)
+            span.fa.fa-line-chart.pull-right.view-chart-disabled.iquidus.market-toggle(data-toggle='tooltip', data-placement='bottom', title=settings.locale.mkt_no_chart)
         table.table.table-bordered.summary-table 
           thead
             tr
@@ -16,18 +16,13 @@ block market_view
               th.d-none.d-sm-block #{settings.locale.mkt_top_bid}
               th.d-none.d-sm-block #{settings.locale.mkt_top_ask}
               th.d-none.d-sm-block #{settings.locale.mkt_last}
-              th #{settings.locale.mkt_change}
           tbody
             tr
               td #{marketdata.data.summary.high}
               td #{marketdata.data.summary.low}
-              td.d-none.d-sm-block #{marketdata.data.summary.bid}
-              td.d-none.d-sm-block #{marketdata.data.summary.ask}
+              td.d-none.d-sm-block #{marketdata.data.summary.buy}
+              td.d-none.d-sm-block #{marketdata.data.summary.sell}
               td.d-none.d-sm-block #{marketdata.data.summary.last}
-              if marketdata.data.summary.change.substring(0, 1) == '-'
-                td.danger #{marketdata.data.summary.change}
-              else
-                td.success #{marketdata.data.summary.change}
   .row
     .col-md-6.col-xs-12
       .card.card-default
@@ -76,35 +71,36 @@ block market_view
           thead
             tr
               th.d-none.d-sm-block #{settings.locale.mkt_type}
-              th #{settings.locale.mkt_amount} (#{marketdata.coin})              
+              th #{settings.locale.mkt_amount} (#{marketdata.coin})
               th #{settings.locale.mkt_price} (#{marketdata.exchange})
               th #{settings.locale.mkt_total} (#{marketdata.exchange})
               th #{settings.locale.mkt_time_stamp}
           tbody
             each order in marketdata.data.history
-              if order.type == 'Buy'
+              if order.type == 'bid'
                 tr.success
                   td.d-none.d-sm-block
                     =order.type
                   td
-                    =order.amount
+                    =order.amount.toFixed(8)
                   td
-                    =order.price
+                    =order.price.toFixed(8)
                   td
                     - var total = order.amount * order.price;
                     =total.toFixed(8)
                   td.d-none.d-sm-block
-                    =format_unixtime(order.date)       
+                    =format_unixtime(order.timestamp)       
               else
                 tr.danger 
                   td.d-none.d-sm-block
                     =order.type
                   td
-                    =order.amount
+                    =order.amount.toFixed(8)
                   td
-                    =order.price
+                    =order.price.toFixed(8)
                   td
-                    =order.Total.toFixed(8)
+                    - var total = order.amount * order.price;
+                    =total.toFixed(8)
                   td.d-none.d-sm-block
-                    =format_unixtime(order.date)
+                    =format_unixtime(order.timestamp)
       .footer-padding

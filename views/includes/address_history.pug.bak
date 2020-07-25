@@ -37,7 +37,7 @@ script.
         var balance = (data[4] / 100000000).toLocaleString('en',{'minimumFractionDigits':2,'maximumFractionDigits':8,'useGrouping':true}); //variables for better readability
 
         var balanceParts = balance.split('.');
-
+        
         $("td:eq(0)", row).html(timestamp).addClass('hidden-xs');
         $("td:eq(1)", row).html('<a href="/tx/' + txhash + '">' + txhash + '</a>').addClass('hidden-xs');
 

@@ -147,7 +147,7 @@ router.get('/markets/:market', function(req, res) {
       /*if (market === 'bittrex') {
         data = JSON.parse(data);
       }*/
-      // console.log(data);
+      console.log(data);
       res.render('./markets/' + market, {
         active: 'markets',
         marketdata: {
@@ -240,7 +240,7 @@ router.get('/tx/:txid', function(req, res) {
 router.get('/block/:hash', function(req, res) {
   route_get_block(res, req.params.hash);
 });
-
+	
 router.get('/address/:hash/claim', function(req,res){
   route_get_claim_form(res, req.params.hash);
 });

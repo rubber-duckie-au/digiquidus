@@ -97,4 +97,3 @@ block content
             input#signature.form-control(type='text' placeholder='Signature')
         button.btn.btn-primary(type='submit') Submit
     .footer-padding
-            
