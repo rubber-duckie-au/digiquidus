@@ -35,17 +35,29 @@ mongoose.connect(dbString, function(err) {
         var i = loop.iteration();
         if (body[i].addr.indexOf("]") > -1) {
               var temp_address = body[i].addr.split(']')[0]
-              var address = temp_address.replace('[', '')
+              var temp_port = body[i].addr.split(']')[1];
+              var address = temp_address.replace('[', '');
+              var port = temp_port.replace(':', '');
         }
-        else {var address = body[i].addr.split(':')[0];}
+        else {
+          var address = body[i].addr.split(':')[0];
+          var port = body[i].addr.split(':')[1];
+        }
         db.find_peer(address, function(peer) {
           if (peer) {
+            if (isNaN(peer['port']) || peer['port'].length < 2 || peer['country'].length < 1) {
+              db.drop_peers(function() {
+                console.log('Saved peers missing ports or country, dropping peers. Re-reun this script afterwards.');
+                exit();
+              });
+            }
             // peer already exists
             loop.next();
           } else {
             request({uri: 'http://api.ipstack.com/' + address + '?access_key=' + settings.ipstack_apikey, json: true}, function (error, response, geo) {
               db.create_peer({
                 address: address,
+                port: port,
                 protocol: body[i].version,
                 version: body[i].subver.replace('/', '').replace('/', ''),
                 country: geo.country_name
