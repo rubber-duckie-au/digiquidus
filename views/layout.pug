@@ -30,7 +30,8 @@ html
             $("#difficulty").text(parseFloat(json.data[0].difficulty).toFixed(2));
             $("#difficultyHybrid").text(json.data[0].difficultyHybrid);
             $("#hashrate").text(parseFloat(json.data[0].hashrate).toLocaleString('en'));
-            $("#lastPrice").text(parseFloat(json.data[0].lastPrice).toFixed(8));
+            $("#lastPrice").text(parseFloat(json.data[0].lastPrice).toFixed(8) + ' #{settings.markets.exchange}'.toUpperCase());
+            $("#marketCap").text((parseFloat(json.data[0].lastPrice).toFixed(8) * parseInt(parseFloat(json.data[0].supply).toFixed(0))) + ' #{settings.markets.exchange}'.toUpperCase());
             $("#lblConnections").text('| ' + json.data[0].blockcount + ' blocks | ' + json.data[0].masternodecount + ' masternodes | ' + json.data[0].connections + ' connections |');
             $("#lblX1").text(' ');
           }});
@@ -160,15 +161,21 @@ html
                label#hashrate -
         .col-md-2
           .panel.panel-default.hidden-sm.hidden-xs
-            .panel-heading
-              strong #{settings.locale.difficulty}
-            .panel-body
-              if settings.index.difficulty == 'Hybrid'
-               label#difficulty -
-               <br>
-               label#difficultyHybrid -
-              else
-               label#difficulty -
+            if settings.index.show_market_cap_over_price != true
+              .panel-heading
+                strong #{settings.locale.difficulty}
+              .panel-body
+                if settings.index.difficulty == 'Hybrid'
+                 label#difficulty -
+                 <br>
+                 label#difficultyHybrid -
+                else
+                 label#difficulty -
+            if settings.index.show_market_cap == true
+              .panel-heading
+                strong Market Cap
+              .panel-body
+                label#marketCap -
         .col-md-2.col-sm-12
           img(src=settings.logo, style='margin-top:-15px;height:128px;')
         .col-md-2
