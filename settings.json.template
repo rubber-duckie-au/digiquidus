@@ -82,7 +82,9 @@
         "movement": true,
         "network": true,
 	"mempool": true,
-      	"masternodes": true
+      	"masternodes": true,
+	"navbar_dark": false,
+        "navbar_light": false
 
     },
 
