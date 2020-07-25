@@ -99,7 +99,25 @@ html
       - var time = date + suffix + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
       - return time
     -  };
-    .nav.navbar.navbar-expand-lg.navbar-dark.bg-primary.fixed-top(role='navigation')
+    - var navbarClasses = ['nav','navbar','navbar-expand-lg','fixed-top'];
+    - var footerClasses = ['nav','navbar','navbar-default','fixed-bottom','d-none','d-md-flex','d-flex'];
+    if settings.display.navbar_dark == true
+      - navbarClasses.push('bg-dark');
+      - navbarClasses.push('navbar-dark');
+      - footerClasses.push('bg-dark');
+      - footerClasses.push('navbar-dark');
+    else
+      if settings.display.navbar_light == true
+        - navbarClasses.push('bg-light');
+        - navbarClasses.push('navbar-light');
+        - footerClasses.push('bg-light');
+        - footerClasses.push('navbar-light');
+      else
+        - navbarClasses.push('bg-primary');
+        - navbarClasses.push('navbar-dark');
+        - footerClasses.push('bg-primary');
+        - footerClasses.push('navbar-dark');
+    div(class=navbarClasses, role='navigation')
       .navbar-header
         button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbar-collapse')
           span.navbar-toggler-icon 
@@ -228,7 +246,7 @@ html
            label#lblConnections
          ul.nav.justify-content-left
            li.pull-right
-             a(href='https://github.com/CryptoCoderz/digiquidus', target='_blank') v#{settings.iquidus_version} Forked from Digiquidus Explorer 
+             a.nav-link(href='https://github.com/CryptoCoderz/digiquidus', target='_blank') v#{settings.iquidus_version} Forked from Digiquidus Explorer 
         if settings.display.twitter
           ul.nav.justify-content-left
             li.pull-left
@@ -249,7 +267,7 @@ html
             li.pull-left
               a#youtube-icon(href="https://www.youtube.com/channel/"+settings.youtube, target='_blank')
                 span.glyphicon.fa.fa-youtube
-      .col-md-4
+      .col-md-4.navbar-nav
         ui.nav.justify-content-end
-          label#lblBlockcount.badge.badge-pill
-          label#lblConnections.badge.badge-pill 
+          label#lblBlockcount.badge.badge-pill.nav-link
+          label#lblConnections.badge.badge-pill.nav-link 
