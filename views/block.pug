@@ -10,13 +10,13 @@ block content
         .row           
           if block.previousblockhash != null
             a(href='/block/'+block.previousblockhash)
-              span.glyphicon.glyphicon-chevron-left.iquidus.block-last(data-toggle='tooltip', data-placement='top', title=settings.locale.block_previous)  
+              span.glyphicon.glyphicon-chevron-left.digiquidus.block-last(data-toggle='tooltip', data-placement='top', title=settings.locale.block_previous)  
             strong.hidden-xs #{settings.symbol} block: #{block.hash}
           else
             strong.hidden-xs(style='margin-left:10px;') #{settings.symbol} #{settings.locale.ex_block}: #{block.hash}
           if block.nextblockhash != null 
             a(href='/block/'+block.nextblockhash)
-              span.glyphicon.glyphicon-chevron-right.iquidus.pull-right.block-next(data-toggle='tooltip', data-placement='top', title=settings.locale.block_next)       
+              span.glyphicon.glyphicon-chevron-right.digiquidus.pull-right.block-next(data-toggle='tooltip', data-placement='top', title=settings.locale.block_next)       
           a(href='/api/getblock?hash='+block.hash)
             span.glyphicon.glyphicon-info-sign.digiquidus.pull-right
       table.table.table-bordered.summary-table 
