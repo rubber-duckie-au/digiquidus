@@ -45,7 +45,7 @@ html
           ordering: false,
           responsive: true
         });
-        $('.digiquidus').css('color',$('.table').css('color'));
+        $('.iquidus').css('color',$('.table').css('color'));
         $(window).resize(function () {
           $($.fn.dataTable.tables( true ) ).DataTable().columns.adjust();
         });
@@ -110,16 +110,6 @@ html
                 a.navbar-link(href='/network')
                   span.fa.fa-share-alt
                   span.menu-text #{settings.locale.menu_network}
-            if settings.display.masternodes == true
-              li#network
-                a.navbar-link(href='/masternodes')
-                  span.glyphicon.glyphicon-tasks
-                  span.menu-text #{settings.locale.menu_masternodes}
-            if settings.display.mempool == true
-              li#mempool
-                a.navbar-link.loading(href='/mempool') 
-                  span.glyphicon.glyphicon-cloud
-                  span.menu-text #{settings.locale.menu_mempool}
             if settings.display.richlist == true
               li#richlist
                 a.navbar-link(href='/richlist')
@@ -161,21 +151,15 @@ html
                label#hashrate -
         .col-md-2
           .panel.panel-default.hidden-sm.hidden-xs
-            if settings.index.show_market_cap_over_price != true
-              .panel-heading
-                strong #{settings.locale.difficulty}
-              .panel-body
-                if settings.index.difficulty == 'Hybrid'
-                 label#difficulty -
-                 <br>
-                 label#difficultyHybrid -
-                else
-                 label#difficulty -
-            if settings.index.show_market_cap == true
-              .panel-heading
-                strong Market Cap
-              .panel-body
-                label#marketCap -
+            .panel-heading
+              strong #{settings.locale.difficulty}
+            .panel-body
+              if settings.index.difficulty == 'Hybrid'
+               label#difficulty -
+               <br>
+               label#difficultyHybrid -
+              else
+               label#difficulty -
         .col-md-2.col-sm-12
           img(src=settings.logo, style='margin-top:-15px;height:128px;')
         .col-md-2
@@ -191,15 +175,21 @@ html
                label#supply -
         .col-md-2
           .panel.panel-default.hidden-sm.hidden-xs
-            .panel-heading
-              strong #{settings.markets.exchange} Price
-            .panel-body
-              if settings.index.difficulty == 'Hybrid'
-               label#lastPrice -
-               <br>
-               label#lblX1
-              else
-               label#lastPrice -
+            if settings.index.show_market_cap == false || settings.index.show_market_cap_over_price != true
+              .panel-heading
+                strong #{settings.markets.exchange} Price
+              .panel-body
+                if settings.index.difficulty == 'Hybrid'
+                  label#lastPrice -
+                  <br>
+                  label#lblX1
+                else
+                  label#lastPrice -
+            if settings.index.show_market_cap == true
+              .panel-heading
+                strong Market Cap
+              .panel-body
+                label#marketCap -
 
       .row.text-center(style='margin-top:10px;margin-bottom:20px;')
         form.form-inline(method='post', action='/search')      
