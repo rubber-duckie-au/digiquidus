@@ -107,13 +107,12 @@
     },
 
     // market settings
-    //supported markets: bittrex, poloniex, yobit, empoex, bleutrade, cryptopia, ccex
+    //supported markets: bittrex, poloniex, yobit, empoex, bleutrade, ccex
     //default market is loaded by default and determines last price in header
     "markets": {
         "coin": "XDN",
         "exchange": "BTC",
         "enabled": [ "bittrex", "hitbtc" ],
-        "cryptopia_id": "0",
         "ccex_key": "Get-Your-Own-Key",
         "default": "bittrex"
     },
