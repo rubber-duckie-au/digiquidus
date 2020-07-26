@@ -152,7 +152,6 @@ tr {
 
 #lblBlockcount {
 	margin-right: 10px;
-	vertical-align: middle;
 }
 
 #market_menu {

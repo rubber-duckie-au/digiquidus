@@ -231,7 +231,7 @@ module.exports = {
       return cb();
     });
   },
-	
+
   is_locked: function(cb) {
     is_locked("db_index", function (exists) {
       if (exists) {
@@ -241,7 +241,7 @@ module.exports = {
       }
     });
   },
-	
+
   update_label: function(hash, message, cb){
     find_address(hash, function(address){
       if(address){
@@ -371,7 +371,7 @@ module.exports = {
     });
   },
 
- get_last_txs_ajax: function(start, length, min, cb) {
+  get_last_txs_ajax: function(start, length, min, cb) {
     Tx.find({'total': {$gte: min}}).count(function(err, count){
       Tx.find({'total': {$gte: min}}).sort({blockindex: -1}).skip(Number(start)).limit(Number(length)).exec(function(err, txs){
         if (err) {
@@ -504,7 +504,7 @@ module.exports = {
       }
     });
   },
-	
+
   // drops richlist data for given coin
   delete_richlist: function(coin, cb) {
     Richlist.findOneAndRemove({coin: coin}, function(err, exists) {
@@ -514,7 +514,7 @@ module.exports = {
         return cb(false);
       }
     });
-  },	
+  },
   // checks richlist data exists for given coin
   check_richlist: function(coin, cb) {
     Richlist.findOne({coin: coin}, function(err, exists) {
@@ -688,7 +688,6 @@ module.exports = {
       }
       lib.get_supply( function (supply){
         lib.get_connectioncount(function (connections) {
-          console.log(supply);
           Stats.findOneAndUpdate({coin: coin}, {
             $set: {
               coin: coin,
@@ -824,7 +823,7 @@ module.exports = {
       }
     })
   },
-	
+
   drop_peer: function(address, cb) {
     Peers.deleteOne({address: address}, function(err) {
       if (err) {

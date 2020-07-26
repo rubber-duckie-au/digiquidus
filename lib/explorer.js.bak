@@ -575,8 +575,6 @@ module.exports = {
            });
          });
        });
-
-
       } else if (settings.supply == 'BALANCES') {
         module.exports.balance_supply(function(supply) {
           return cb(supply/100000000);
