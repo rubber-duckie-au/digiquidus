@@ -11,37 +11,10 @@
         th.hidden-xs(style='text-align:center;') %
     tbody
       - var count = 0
-      - var catchcount = 0
-      - var itemFixed = 0
-      - var percentage = 0
       each item in balance
-        if count == 0
-          if catchcount != 0
-            - count = catchcount
-            - catchcount = 0
-          else		
-            - count = count + 1
-        else
-          - count = count + 1
-        if item.a_id == 'dMsop93F7hbLSA2d666tSPjB2NXSAfXpeU'
-          - itemFixed = item.balance / 100000000
-          - percentage = 0
-          - catchcount = count
-          - count = 0
-        else if item.a_id == 'daigDQ7VxAFwmhh59HstA53KYD5a4q81N5'
-          - itemFixed = item.balance / 100000000
-          - percentage = 0
-          - catchcount = count
-          - count = 0
-        else if item.a_id == 'dVibZ11CVyiso4Kw3ZLAHp7Wn77dXuvq1d'
-          - itemFixed = item.balance / 100000000
-          - percentage = 0
-          - catchcount = count
-          - count = 0
-        else
-          - itemFixed = item.balance / 100000000
-          - percentage = (itemFixed / stats.supply) * 100
-
+        - count = count + 1
+        - var itemFixed = item.balance / 100000000
+        - var percentage = (itemFixed / stats.supply) * 100
         tr
           td(style='text-align:center;') 
             =count
