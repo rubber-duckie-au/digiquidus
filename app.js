@@ -61,7 +61,7 @@ app.use('/api', bitcoinapi.app);
 app.use('/', routes);
 app.use('/ext/getmoneysupply', function(req,res){
   lib.get_supply(function(supply){
-    res.send(' '+supply);
+    res.send(' ' +(supply));
   });
 });
 
