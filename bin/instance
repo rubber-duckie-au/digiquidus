@@ -57,7 +57,7 @@ db.connect(dbString, function() {
   }
   if ( settings.https_site ) {
     var fs = require('fs');
-    var certRoot = '/etc/letsencrypt/live/' + settings.address + '/'
+    var certRoot = '/etc/letsencrypt/live/' + settings.address + '/';
 
     var options = {
       ca: fs.readFileSync(certRoot + 'chain.pem'),
@@ -68,19 +68,20 @@ db.connect(dbString, function() {
     var http = require('http')
     var https = require('https')
  
-
+    http.createServer(function(req, res) {
+	if (req.url.indexOf('/.well-known/acme-challenge/') >= 0) {
+	    console.log(req.url)
+	    //res.send();
+	    res.writeHead(200); 
+            var contents = fs.readFileSync('./public' + req.url)
+	    res.end(contents);
  
-    http.createServer(function(req, res) {   
-	    if (req.url.indexOf('/.well-known/acme-challenge/') >= 0) {
-	      console.log(req.url)
-	      res.writeHead(200); 
-        var contents = fs.readFileSync('./public' + req.url)
-	      res.end(contents);
-      } else {
-	      res.writeHead(301, {"Location": "https://" + req.headers['host'] + req.url});
-        console.log('redirected')
-        res.end();
-      }
+	} else {
+	    res.writeHead(301, {"Location": "https://" + req.headers['host'] + req.url});
+            console.log('redirected')
+            res.end();
+
+}
     }).listen(80);
  
     https.createServer(options, app).listen(443); 
