@@ -61,7 +61,8 @@ Port 27017 by default
 ### Install Node.js
 
     sudo apt-get update
-    sudo apt-get install nodejs nodejs-legacy -y
+    sudo apt-get install nodejs -y
+    sudo apt-get install nodejs-dev node-gyp libssl1.0-dev
     sudo apt-get install npm
 
 ### Create database
